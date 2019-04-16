@@ -24,7 +24,7 @@ Add-WCMCredential -Name server.domain.org -Type DomainPassword
 Add a Generic credential. Generic credentials can be decrypted.
 ```powershell
 Add-WCMCredential -Name MySqlServer1 -Type Generic -Username User01 -Password SecretPassword
-Add-WCMCredential -Name MySqlServer2 -Type Generic -Type Generic -Credential (Get-Credential -Message "Enter MySQL Creds")
+Add-WCMCredential -Name MySqlServer2 -Type Generic -Credential (Get-Credential -Message "Enter MySQL Creds")
 ```
 
 Remove a credential:
