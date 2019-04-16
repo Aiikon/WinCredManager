@@ -1,10 +1,22 @@
 $Script:ShortToFullType = @{}
 $Script:ShortToFullType['DomainPassword'] = 'DOMAIN_PASSWORD'
 $Script:ShortToFullType['Generic'] = 'GENERIC'
+$Script:ShortToFullType['DomainCertificate'] = 'DOMAIN_CERTIFICATE'
+$Script:ShortToFullType['DomainVisiblePassword'] = 'DOMAIN_VISIBLE_PASSWORD'
+$Script:ShortToFullType['GenericCertificate'] = 'GENERIC_CERTIFICATE'
+$Script:ShortToFullType['DomainExtended'] = 'DOMAIN_EXTENDED'
+$Script:ShortToFullType['Maximum'] = 'MAXIMUM'
+$Script:ShortToFullType['MaximumEx'] = 'MAXIMUM_EX'
 
 $Script:FullToShortType = @{}
 $Script:FullToShortType['DOMAIN_PASSWORD'] = 'DomainPassword'
 $Script:FullToShortType['GENERIC'] = 'Generic'
+$Script:FullToShortType['DOMAIN_CERTIFICATE'] = 'DomainCertificate'
+$Script:FullToShortType['DOMAIN_VISIBLE_PASSWORD'] = 'DomainVisiblePassword'
+$Script:FullToShortType['GENERIC_CERTIFICATE'] = 'GenericCertificate'
+$Script:FullToShortType['DOMAIN_EXTENDED'] = 'DomainExtended'
+$Script:FullToShortType['MAXIMUM'] = 'Maximum'
+$Script:FullToShortType['MAXIMUM_EX'] = 'MaximumEx'
 
 Function Initialize-WinCredManager
 {
@@ -343,7 +355,7 @@ Function Get-WCMCredential
             $result = [ordered]@{}
             $result.Name = if ($isMatch) { $Matches[2] } else { $credential.TargetName }
             $result.Type = $credential.Type.ToString()
-            if ($typeDict[$result.Type]) { $result.Type = $Script:FullToShortType[$result.Type] }
+            if ($Script:FullToShortType[$result.Type]) { $result.Type = $Script:FullToShortType[$result.Type] }
             $result.Username = $credential.UserName
             $result.LastModified = $credential.LastWritten
             try
